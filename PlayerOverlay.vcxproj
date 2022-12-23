@@ -9,7 +9,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{3310989f-f534-4fca-8ef6-40cee8ddd0ce}</ProjectGuid>
-    <RootNamespace>BakkesPlugin</RootNamespace>
+    <RootNamespace>PlayerOverlay</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <VcpkgTriplet>x64-windows-static</VcpkgTriplet>
     <VcpkgEnabled>true</VcpkgEnabled>
@@ -18,13 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -51,7 +51,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)plugins\</OutDir>
     <IntDir>$(SolutionDir)build\.intermediates\$(Configuration)\</IntDir>
-    <TargetName>A1PluginTemplateDllFileName</TargetName>
+    <TargetName>A1PlayerOverlay</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -89,46 +89,46 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File .\Version.ps1 "./BakkesPlugin/version.h"</Command>
+      <Command>powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File .\Version.ps1 "./PlayerOverlay/version.h"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imguivariouscontrols.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_additions.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_demo.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_draw.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_rangeslider.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_searchablecombo.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_timeline.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\imgui\imgui_stdlib.cpp" />
-    <ClCompile Include="BakkesPlugin\pch\pch.cpp">
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imguivariouscontrols.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_additions.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_demo.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_draw.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_rangeslider.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_searchablecombo.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_timeline.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="PlayerOverlay\pch\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="BakkesPlugin\plugin.cpp" />
+    <ClCompile Include="PlayerOverlay\plugin.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BakkesPlugin\pch\imgui\imconfig.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imguivariouscontrols.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_additions.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_internal.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_rangeslider.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_searchablecombo.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_timeline.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imstb_rectpack.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imstb_textedit.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imstb_truetype.h" />
-    <ClInclude Include="BakkesPlugin\pch\imgui\imgui_stdlib.h" />
-    <ClInclude Include="BakkesPlugin\pch\pch.h" />
-    <ClInclude Include="BakkesPlugin\plugin.h" />
-    <ClInclude Include="BakkesPlugin\version.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imconfig.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imguivariouscontrols.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_additions.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_internal.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_rangeslider.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_searchablecombo.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_timeline.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imstb_rectpack.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imstb_textedit.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imstb_truetype.h" />
+    <ClInclude Include="PlayerOverlay\pch\imgui\imgui_stdlib.h" />
+    <ClInclude Include="PlayerOverlay\pch\pch.h" />
+    <ClInclude Include="PlayerOverlay\plugin.h" />
+    <ClInclude Include="PlayerOverlay\version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

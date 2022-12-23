@@ -20,6 +20,7 @@ class PlayerOverlay: public BakkesMod::Plugin::BakkesModPlugin, public BakkesMod
 	virtual void onUnload();
 
 	// Game event hooks
+	void onTick(ServerWrapper caller, void* params, string eventName);
 	void onMatchQuit(ServerWrapper caller, void* params, string eventName);
 	void onStatRefresh(ServerWrapper caller, void* params, string eventName);
 

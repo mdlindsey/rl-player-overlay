@@ -38,6 +38,7 @@ void PlayerOverlay::onLoad()
 	// https://wiki.PlayerOverlays.com/functions/commonly_hooked_functions/
 	map<string, void (PlayerOverlay::*)(ServerWrapper c, void *p, string e)> ListenerMap =
 	{
+		{ "Function Engine.GameViewportClient.Tick", &PlayerOverlay::onTick },
 		{ "Function TAGame.GameEvent_Soccar_TA.Destroyed", &PlayerOverlay::onMatchQuit },
 		{ "Function TAGame.PRI_TA.GetScoreboardStats", &PlayerOverlay::onStatRefresh },
 	};
@@ -82,16 +83,29 @@ void PlayerOverlay::SetImGuiContext(uintptr_t ctx) { ImGui::SetCurrentContext(re
 
 void PlayerOverlay::onMatchQuit(ServerWrapper caller, void* params, string eventName)
 {
-	MatchData::PLAYERS.clear();
+	MatchData::ResetAll();
+}
+
+void PlayerOverlay::onTick(ServerWrapper caller, void* params, string eventName)
+{
+	this->RenderOverlay();
 }
 
 void PlayerOverlay::onStatRefresh(ServerWrapper caller, void* params, string eventName)
 {
-	MatchData::RefreshMeta();
-	MatchData::RefreshBall();
-	MatchData::RefreshBoost();
-	MatchData::RefreshAllPlayers();
-	this->RenderOverlay();
+	auto gameState = gameWrapper->GetCurrentGameState();
+	if (!gameState || !gameWrapper->IsInOnlineGame())
+	{
+		Log::Warn("Cannot refresh player data outside of online match");
+		MatchData::ResetAll();
+	}
+	else
+	{
+		MatchData::RefreshMeta();
+		MatchData::RefreshBall();
+		MatchData::RefreshBoost();
+		MatchData::RefreshAllPlayers();
+	}
 }
 
 
